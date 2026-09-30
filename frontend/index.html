@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#07111F" />
+  <meta name="description" content="MindLens AI-powered mental health score prediction dashboard." />
+  <title>MindLens | Mental Health Score Prediction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <aside class="sidebar" id="sidebar">
+    <a class="brand" href="#dashboard" aria-label="MindLens dashboard">
+      <span class="brand-mark" aria-hidden="true"><span></span><i></i></span>
+      <span class="brand-name">mind<span>lens</span><small>AI SCORE PREDICTION</small></span>
+    </a>
+    <span class="nav-caption">WORKSPACE</span>
+    <nav class="side-nav" aria-label="Main navigation">
+      <a class="nav-link active" href="#dashboard"><span class="nav-icon">⌂</span><span>Dashboard</span></a>
+      <a class="nav-link" href="#prediction-inputs"><span class="nav-icon">✳</span><span>Predict score</span></a>
+      <a class="nav-link" href="#history"><span class="nav-icon">◷</span><span>Prediction history</span></a>
+      <a class="nav-link" href="#input-summary"><span class="nav-icon">⌁</span><span>Insights</span></a>
+      <a class="nav-link" href="#model-info"><span class="nav-icon">▤</span><span>About model</span></a>
+      <a class="nav-link" href="#settings-dialog" id="settings-nav"><span class="nav-icon">⚙</span><span>Settings</span></a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="api-card"><span class="api-indicator" id="api-indicator"></span><div><strong id="api-status">API not checked</strong><small>FastAPI · /predict</small></div><button class="icon-button settings-button" id="settings-btn" type="button" aria-label="API settings" title="API settings">⚙</button></div>
+      <div class="sidebar-foot"><span class="avatar">ML</span><span><strong>MindLens</strong><small>Student project</small></span><span class="foot-dots">•••</span></div>
+    </div>
+  </aside>
+  <div class="app-main">
+    <header class="topbar">
+      <button class="icon-button menu-button" id="menu-btn" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <div class="breadcrumb"><span>Workspace</span><i>/</i><strong>Dashboard</strong></div>
+      <div class="top-actions"><span class="top-date" id="today-date"></span><label class="theme-control" for="theme-select"><span>Theme</span><select id="theme-select" aria-label="Choose theme"><option value="default">Default</option><option value="light">Light</option><option value="dark">Dark / black</option></select></label><button class="icon-button notification-button" id="notification-btn" type="button" aria-label="Prediction notifications" title="Prediction status"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4" /></svg><i id="notification-dot"></i></button><span class="avatar top-avatar">ML</span></div>
+    </header>
+    <main id="dashboard" class="dashboard">
+      <section class="welcome-row">
+        <div><p class="eyebrow">PREDICTION WORKSPACE <span class="eyebrow-dot"></span> LOCAL INFERENCE</p><h1>Hello <span class="wave">👋</span></h1><p class="welcome-copy">Predict and understand your mental health score using AI.</p></div>
+        <a class="quick-link" href="#prediction-inputs"><span>＋</span> New prediction</a>
+      </section>
+      <section class="dashboard-grid" aria-label="Mental health score prediction dashboard">
+        <article class="card score-card">
+          <div class="card-heading"><div><span class="eyebrow">LATEST MODEL OUTPUT</span><h2>Predicted Mental Health Score</h2></div><span class="result-chip" id="score-status">NO RESULT</span></div>
+          <div class="score-content">
+            <div class="score-gauge" id="score-gauge" role="img" aria-label="No prediction available" style="--score-angle: 0deg"><div class="gauge-inner"><span class="gauge-label">SCORE</span><strong id="score-number">--</strong><span class="gauge-outof">/ 10</span></div></div>
+            <div class="score-summary"><span class="summary-label">CURRENT ESTIMATE</span><p class="score-summary-value"><strong id="score-display">--</strong><span> / 10</span></p><span class="result-chip large-chip" id="score-category">Awaiting prediction</span><p class="score-note" id="score-note">Submit student signals to receive an estimate from the model.</p></div>
+          </div>
+          <div class="score-bottom"><span><i class="tiny-pulse"></i> MODEL RESPONSE</span><strong id="score-updated">No prediction yet</strong></div>
+        </article>
+        <article class="card summary-card" id="input-summary">
+          <div class="card-heading"><div><span class="eyebrow">MODEL INPUTS</span><h2>Input summary</h2></div><span class="mini-icon cyan-icon">⌁</span></div>
+          <p class="card-subtitle">Most recent submitted values</p>
+          <div class="summary-grid">
+            <div><span>AGE</span><strong data-summary="age">--</strong></div><div><span>GENDER</span><strong data-summary="gender">--</strong></div>
+            <div><span>COUNTRY</span><strong data-summary="country">--</strong></div><div><span>ACADEMIC LEVEL</span><strong data-summary="academic_level">--</strong></div>
+            <div><span>PLATFORM</span><strong data-summary="most_used_platform">--</strong></div><div><span>PURPOSE</span><strong data-summary="purpose_of_use">--</strong></div>
+            <div><span>DAILY USAGE</span><strong data-summary="avg_daily_usage_hours">--</strong></div><div><span>DAILY UNLOCKS</span><strong data-summary="daily_unlocks">--</strong></div>
+            <div><span>STUDY HOURS</span><strong data-summary="study_hours">--</strong></div><div><span>PHYSICAL ACTIVITY</span><strong data-summary="physical_activity_hours">--</strong></div>
+            <div><span>SLEEP / NIGHT</span><strong data-summary="sleep_hours_per_night">--</strong></div><div><span>STRESS LEVEL</span><strong data-summary="stress_level">--</strong></div>
+          </div>
+        </article>
+        <article class="card model-card" id="model-info">
+          <div class="card-heading"><div><span class="eyebrow">MODEL DETAILS</span><h2>About the model</h2></div><span class="mini-icon purple-icon">◈</span></div>
+          <div class="model-name"><span class="model-symbol">RF</span><div><strong>Random Forest</strong><small>Regressor</small></div></div>
+          <div class="model-specs"><div><span>MODEL TYPE</span><strong>Ensemble regression</strong></div><div><span>PREDICTION TASK</span><strong>Mental health score</strong></div><div><span>INPUT FEATURES</span><strong>12 fields</strong></div><div><span>OUTPUT</span><strong>Score · 0–10</strong></div></div>
+          <p class="model-disclaimer">AI-generated estimate only. This is not a medical diagnosis.</p>
+        </article>
+        <section class="card form-card" id="prediction-inputs">
+          <div class="card-heading form-heading"><div><span class="eyebrow">NEW INFERENCE</span><h2>Student signal profile</h2><p class="card-subtitle">Enter the 12 features used by the prediction model.</p></div><span class="feature-count">12 <small>FEATURES</small></span></div>
+          <form id="predict-form" novalidate>
+            <div class="form-section"><span class="form-section-title"><i>01</i> PROFILE</span><div class="form-grid">
+              <label>Age<input type="number" id="age" name="age" min="10" max="100" step="1" placeholder="21" required /><small class="field-error"></small></label>
+              <label>Gender<select id="gender" name="gender" required><option value="" selected disabled>Select gender</option><option value="male">Male</option><option value="female">Female</option></select><small class="field-error"></small></label>
+              <label>Country<input type="text" id="country" name="country" list="country-list" placeholder="Select or enter country" autocomplete="off" required /><datalist id="country-list"><option value="India"></option><option value="USA"></option><option value="Canada"></option><option value="Australia"></option><option value="UK"></option><option value="Germany"></option><option value="Mexico"></option><option value="Turkey"></option><option value="France"></option></datalist><small class="field-error"></small></label>
+              <label>Academic level<select id="academic_level" name="academic_level" required><option value="" selected disabled>Select level</option><option>Undergraduate</option><option>Graduate</option><option>High School</option></select><small class="field-error"></small></label>
+            </div></div>
+            <div class="form-section"><span class="form-section-title"><i>02</i> DIGITAL BEHAVIOR</span><div class="form-grid">
+              <label>Most used platform<select id="most_used_platform" name="most_used_platform" required><option value="" selected disabled>Select platform</option><option>Facebook</option><option>LinkedIn</option><option>Instagram</option><option>Snapchat</option><option>Twitter</option><option>YouTube</option><option>TikTok</option><option>LINE</option><option>KakaoTalk</option><option>VKontakte</option><option>WhatsApp</option><option>WeChat</option></select><small class="field-error"></small></label>
+              <label>Purpose of use<select id="purpose_of_use" name="purpose_of_use" required><option value="" selected disabled>Select purpose</option><option>Networking</option><option>Education</option><option>Entertainment</option><option>News</option></select><small class="field-error"></small></label>
+              <label>Average daily usage<input type="number" id="avg_daily_usage_hours" name="avg_daily_usage_hours" min="0" max="24" step="0.1" placeholder="4.8" required /><small class="input-suffix">HRS / DAY</small><small class="field-error"></small></label>
+              <label>Daily unlocks<input type="number" id="daily_unlocks" name="daily_unlocks" min="0" step="1" placeholder="42" required /><small class="input-suffix">PER DAY</small><small class="field-error"></small></label>
+            </div></div>
+            <div class="form-section"><span class="form-section-title"><i>03</i> LIFESTYLE SIGNALS</span><div class="form-grid">
+              <label>Study hours<input type="number" id="study_hours" name="study_hours" min="0" max="24" step="0.1" placeholder="5.1" required /><small class="input-suffix">HRS / DAY</small><small class="field-error"></small></label>
+              <label>Physical activity<input type="number" id="physical_activity_hours" name="physical_activity_hours" min="0" max="24" step="0.1" placeholder="1.8" required /><small class="input-suffix">HRS / DAY</small><small class="field-error"></small></label>
+              <label>Sleep per night<input type="number" id="sleep_hours_per_night" name="sleep_hours_per_night" min="0" max="24" step="0.1" placeholder="7.2" required /><small class="input-suffix">HRS / NIGHT</small><small class="field-error"></small></label>
+              <label>Stress level<select id="stress_level" name="stress_level" required><option value="" selected disabled>Select level</option><option>Low</option><option>Medium</option><option>High</option><option>Very High</option></select><small class="field-error"></small></label>
+            </div></div>
+            <div class="form-footer"><p class="form-message" id="form-message" role="status">Your inputs are sent to the configured FastAPI prediction endpoint.</p><button class="predict-button" id="submit-btn" type="submit"><span class="btn-label">Predict Mental Health Score <b aria-hidden="true">→</b></span><span class="btn-spinner" aria-hidden="true"></span></button></div>
+          </form>
+        </section>
+        <section class="card result-card" id="prediction-panel" aria-live="polite">
+          <div class="card-heading"><div><span class="eyebrow">INFERENCE RESULT</span><h2>Prediction output</h2></div><span class="result-orb" aria-hidden="true">✳</span></div>
+          <div class="result-gauge-wrap"><div class="result-gauge" id="result-gauge" style="--score-angle: 0deg"><div><strong id="result-score">--</strong><span>/ 10</span></div></div></div>
+          <div class="result-status-row"><span class="result-chip" id="result-category">Awaiting prediction</span><span id="result-timestamp">No response received</span></div>
+          <p class="result-explanation" id="result-copy">Complete the student signal profile and submit it to see the model's output here.</p>
+          <div class="agent-output">
+            <section aria-labelledby="insight-heading"><h3 id="insight-heading">Input insights</h3><ul id="insight-list"><li>Insights will appear after a prediction.</li></ul></section>
+            <section aria-labelledby="recommendation-heading"><h3 id="recommendation-heading">Wellness suggestions</h3><ul id="recommendation-list"><li>Suggestions will appear after a prediction.</li></ul></section>
+          </div>
+          <p class="clinical-note"><span>ⓘ</span> This prediction is an AI-generated estimate and is not a medical diagnosis.</p>
+          <div class="response-state" id="response-state"><span></span><strong>Waiting for model response</strong></div>
+        </section>
+        <section class="card history-card" id="history">
+          <div class="card-heading"><div><span class="eyebrow">LOCAL RECORD</span><h2>Prediction history</h2><p class="card-subtitle">Only successful responses from the model are shown.</p></div><button class="text-button" id="clear-history-btn" type="button" hidden>Clear history</button></div>
+          <div class="history-table-wrap"><table><thead><tr><th>DATE</th><th>SCORE</th><th>STATUS</th></tr></thead><tbody id="history-rows"><tr class="empty-row"><td colspan="3">No predictions yet. Results from successful model calls will appear here.</td></tr></tbody></table></div>
+        </section>
+      </section>
+      <footer class="dashboard-footer"><span>MINDLENS <i>·</i> MENTAL HEALTH SCORE PREDICTION</span><span>INFORMATIONAL USE ONLY</span><span>Created by Sanyukta Soni</span></footer>
+    </main>
+  </div>
+  <div class="mobile-backdrop" id="mobile-backdrop"></div>
+  <dialog class="settings-dialog" id="settings-dialog"><form method="dialog" id="settings-form"><div class="dialog-heading"><div><span class="eyebrow">CONNECTION</span><h2>Prediction API</h2></div><button class="icon-button" value="cancel" aria-label="Close settings">×</button></div><label for="api-url">Base URL</label><input id="api-url" type="url" placeholder="http://127.0.0.1:8000" required /><p>MindLens sends prediction requests to <code>/predict</code> at this address.</p><button class="predict-button" id="save-settings-btn" value="save">Save endpoint</button></form></dialog>
++  <script src="script.js"></script>
++</body>
++</html>
