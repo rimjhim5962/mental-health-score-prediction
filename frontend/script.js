@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const DEFAULT_API_URL = "http://127.0.0.1:8000";
+  const DEFAULT_API_URL = "https://mental-health-score-prediction-l9o2.onrender.com";
   const HISTORY_KEY = "mindlens.prediction-history.v1";
   const API_KEY = "mindlens.api-url.v1";
   const THEME_KEY = "mindlens.theme.v1";
